@@ -3,6 +3,7 @@
     "description": "Extendable router",
     "type": "library",
     "license": "MIT",
+    "homepage": "https://github.com/meowphp/routing",
     "autoload": {
         "psr-4": {
             "Meow\\Routing\\": "src/"
@@ -26,5 +27,11 @@
         "phpunit/phpunit": "^9.5",
         "phpstan/phpstan": "^1.1",
         "squizlabs/php_codesniffer": "^3.6"
+    },
+    "suggest": {
+        "maymeow/cake-attribute-routing": ">=v0.2.0"
+    },
+    "support": {
+        "issues": "https://github.com/meowphp/routing/issues"
     }
 }
