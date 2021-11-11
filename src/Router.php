@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Meow\Routing;
 
+use Meow\Routing\Attributes\Prefix;
 use Meow\Routing\Attributes\Route;
 use Meow\Routing\Exceptions\NotFoundRouteException;
 
@@ -45,10 +46,21 @@ class Router
      */
     public static function getRouter(array $controllers): Router
     {
+        $controllerPrefixName = null;
+
         $router = new self();
 
         foreach ($controllers as $controller) {
             $reflectionClass = new \ReflectionClass($controller);
+
+            /** @var array<\ReflectionAttribute<Prefix>> $controllerPrefixAttributes */
+            $controllerPrefixAttributes = $reflectionClass->getAttributes(Prefix::class);
+
+            if (!empty($controllerPrefixAttributes)) {
+                /** @var Prefix $controllerPrefix */
+                $controllerPrefix = $controllerPrefixAttributes[0]->newInstance();
+                $controllerPrefixName = $controllerPrefix->getPrefixName();
+            }
 
             /** @var array<\ReflectionMethod> $controllerActions */
             $controllerActions = $reflectionClass->getMethods();
@@ -64,6 +76,11 @@ class Router
 
                         $actionRoute->setController($controller);
                         $actionRoute->setAction($controllerAction->getName());
+
+                        // add prefix to route
+                        if (!is_null($controllerPrefixName)) {
+                            $actionRoute->setRoutePrefix($controllerPrefixName);
+                        }
 
                         $router->addRoute($actionRoute);
                     }

@@ -1,6 +1,6 @@
 # Routing
 
-Extendable Router that usses Attributes to define routes to methods
+Extendable Router that uses Attributes to define routes to methods
 
 ## Installing
 
@@ -75,6 +75,17 @@ $calledRoute->getMethod();
 if ($calledRoute->hasParameters()) {
     $request = $calledRoute->getParameters();
 }
+```
+
+### Prefixes
+
+Prefixes can be applied on router class. After applying them router starts with prefix `/{prefix}/{action}`.
+So instead of defining routes as `/users/action` and `/users/action-two` You can use Prefix and `/users` and 
+then define route for actions as `/action` and `/action-two`. Example bellow:
+
+```php
+#[Prefix('/api')]
+class ExampleController extends AppController
 ```
 
 __License: MIT__
