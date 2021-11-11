@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Meow\Routing;
@@ -65,7 +66,7 @@ class Router
             /** @var array<\ReflectionMethod> $controllerActions */
             $controllerActions = $reflectionClass->getMethods();
 
-            if (!empty($controllerActions)){
+            if (!empty($controllerActions)) {
                 foreach ($controllerActions as $controllerAction) {
                     /** @var array<\ReflectionAttribute<Route>> $actionRouteAttributes */
                     $actionRouteAttributes = $controllerAction->getAttributes(Route::class);

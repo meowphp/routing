@@ -11,7 +11,7 @@ class Text
      * @param string $char
      * @return bool
      */
-    public static function startWith(string $text, string $char) : bool
+    public static function startWith(string $text, string $char): bool
     {
         return (bool)preg_match('/^' . $char . '/', $text);
     }
@@ -23,7 +23,7 @@ class Text
      * @param string $char
      * @return bool
      */
-    public static function endsWith(string $text, string $char) : bool
+    public static function endsWith(string $text, string $char): bool
     {
         return preg_match('/' . $char . '{1}$/', $text) && strlen($text) > 1;
     }

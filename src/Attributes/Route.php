@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Meow\Routing\Attributes;
@@ -77,7 +78,7 @@ class Route
         }
 
         // route /prefix
-        if ($this->routePrefix != '/' && $this->routeName = '/') {
+        if ($this->routePrefix != '/') {
             return $this->routePrefix;
         }
 
@@ -100,7 +101,7 @@ class Route
         }
 
         if (preg_match('#^' . $regex . '$#sD', self::trimPath($routeName), $matches)) {
-            $values = array_filter($matches, static function($key) {
+            $values = array_filter($matches, static function ($key) {
                 return is_string($key);
             }, ARRAY_FILTER_USE_KEY);
 
@@ -116,13 +117,13 @@ class Route
     /**
      * @return array<string> Array of parameters names
      */
-    public function getParametersNames() : array
+    public function getParametersNames(): array
     {
         preg_match_all('/{[^}]*}/', $this->getRouteName(), $matches);
         return reset($matches) ?? [];
     }
 
-    public function hasParameters() : bool
+    public function hasParameters(): bool
     {
         return $this->getParametersNames() !== [];
     }
@@ -130,12 +131,12 @@ class Route
     /**
      * @return string[] Array of parameters values
      */
-    public function getParameters() : array
+    public function getParameters(): array
     {
         return $this->parameters;
     }
 
-    public static function trimPath(string $path) : string
+    public static function trimPath(string $path): string
     {
         return '/' . rtrim(ltrim(trim($path), '/'), '/');
     }
