@@ -1,5 +1,5 @@
 {
-    "name": "meow/routing",
+    "name": "meowphp/routing",
     "description": "Extendable router",
     "type": "library",
     "license": "MIT",
