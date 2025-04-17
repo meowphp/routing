@@ -1,6 +1,10 @@
 # Routing
 
+__namespace:__ `meow\routing`
+
 Extendable Router that uses Attributes to define routes to methods
+
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/D1D5DMOTA)
 
 ## Installing
 
